@@ -6,6 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from 'react-router';
+import Footer from './routes/components/Footer';
 
 import type { Route } from './+types/root';
 import './app.css';
@@ -45,6 +46,7 @@ export default function App() {
   return (
     <main className="min-h-screen bg-white">
       <Outlet />;
+      <Footer />
     </main>
   );
 }
