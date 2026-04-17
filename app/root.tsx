@@ -10,6 +10,7 @@ import Footer from './routes/components/Footer';
 
 import type { Route } from './+types/root';
 import './app.css';
+import Navbar from './routes/components/Navbar';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -45,6 +46,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <main className="min-h-screen bg-white">
+      <Navbar />
       <Outlet />;
       <Footer />
     </main>
