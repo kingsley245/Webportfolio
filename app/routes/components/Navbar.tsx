@@ -76,7 +76,7 @@ const Navbar = () => {
 
       {/* MOBILE MENU DROPDOWN */}
       {isOpen && (
-        <div className="absolute top-full left-0 w-full bg-white border-b border-slate-100 p-6 flex flex-col gap-6 md:hidden shadow-xl animate-in fade-in slide-in-from-top-4">
+        <div className="absolute top-full left-0 w-full bg-white border-b border-slate-100 p-6 flex flex-col gap-6 md:hidden shadow-xl animate-in fade-in slide-in-from-right-4">
           {navLinks.map((link) => (
             <NavLink
               key={link.path}
