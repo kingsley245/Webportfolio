@@ -5,7 +5,6 @@ const STRAPI_URL = import.meta.env.VITE_STRAPI_URL;
 
 export default function Profile() {
   const [profile, setProfile] = useState<any>(null);
-
   useEffect(() => {
     async function fetchProfile() {
       const res = await fetch(`${STRAPI_URL}/api/profiles?populate=*`);
@@ -18,17 +17,9 @@ export default function Profile() {
   if (!profile)
     return <div className="p-24 text-center font-mono">LOADING_PROFILE...</div>;
 
-  const data = profile;
-  const imageObj = profile.thumbnail;
-  const relativeUrl = imageObj?.url;
+  const data = profile[0];
 
-  const imgUrl = relativeUrl
-    ? relativeUrl.startsWith('http')
-      ? relativeUrl
-      : `${STRAPI_URL}${relativeUrl}`
-    : 'https://via.placeholder.com/400x500?text=Check+Strapi+Fields';
-
-  console.log('Final Image URL:', imgUrl);
+  const imgUrl = data.ProfileImage.formats.thumbnail.url;
 
   return (
     <main className="min-h-screen bg-white pt-32 pb-24">
@@ -43,11 +34,7 @@ export default function Profile() {
               <div className="relative mb-8">
                 <div className="absolute -inset-4 border-2 border-orange-500 rounded-[60px] opacity-20 rotate-3"></div>
                 <img
-                  src={
-                    imgUrl?.startsWith('https')
-                      ? imgUrl
-                      : `${STRAPI_URL}${imgUrl}`
-                  }
+                  src="https://res.cloudinary.com/dcpkscvwe/image/upload/v1776439941/small_Whats_App_Image_2026_01_20_at_18_24_11_901c0499cf.jpg"
                   className="w-full aspect-4/5 object-cover rounded-[50px] shadow-2xl relative z-10 grayscale hover:grayscale-0 transition-all duration-700"
                   alt="Kingsley Festus Osuya"
                 />
