@@ -24,7 +24,7 @@ export default function Experience() {
       <div className="max-w-5xl mx-auto px-6">
         {/* Page Header */}
         <header className="mb-20 text-center">
-          <h1 className="text-7xl font-black text-slate-900 tracking-tighter uppercase italic">
+          <h1 className="text-7xl font-black text-slate-900 uppercase italic">
             Exp<span className="text-orange-500">erience.</span>
           </h1>
           <p className="text-slate-400 font-bold tracking-[0.3em] uppercase text-xs mt-4">

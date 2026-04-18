@@ -35,7 +35,7 @@ export default function HomeProjectGrid() {
   return (
     <section className="py-24 bg-white">
       <h1 className="text-center text-slate-400 font-bold uppercase tracking-[0.3em] text-sm mb-12">
-        Selected <span className="text-purple-600">Projects</span>
+        Selected <span className="text-orange-500">Projects</span>
       </h1>
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
