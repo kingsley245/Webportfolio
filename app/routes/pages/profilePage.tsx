@@ -19,13 +19,21 @@ export default function Profile() {
     return <div className="p-24 text-center font-mono">LOADING_PROFILE...</div>;
 
   const data = profile;
-  const imgUrl = data.ProfileImage?.url;
+  const imageObj = profile.thumbnail;
+  const relativeUrl = imageObj?.url;
+
+  const imgUrl = relativeUrl
+    ? relativeUrl.startsWith('http')
+      ? relativeUrl
+      : `${STRAPI_URL}${relativeUrl}`
+    : 'https://via.placeholder.com/400x500?text=Check+Strapi+Fields';
+
+  console.log('Final Image URL:', imgUrl);
 
   return (
     <main className="min-h-screen bg-white pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-          {/* LEFT COLUMN: Visuals & Core Info */}
           <div className="lg:col-span-5">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -36,17 +44,17 @@ export default function Profile() {
                 <div className="absolute -inset-4 border-2 border-orange-500 rounded-[60px] opacity-20 rotate-3"></div>
                 <img
                   src={
-                    imgUrl?.startsWith('http')
+                    imgUrl?.startsWith('https')
                       ? imgUrl
                       : `${STRAPI_URL}${imgUrl}`
                   }
-                  className="w-full aspect-[4/5] object-cover rounded-[50px] shadow-2xl relative z-10 grayscale hover:grayscale-0 transition-all duration-700"
+                  className="w-full aspect-4/5 object-cover rounded-[50px] shadow-2xl relative z-10 grayscale hover:grayscale-0 transition-all duration-700"
                   alt="Kingsley Festus Osuya"
                 />
               </div>
 
               <h1 className="text-5xl font-black text-slate-900 uppercase italic tracking-tighter leading-none mb-4">
-                Kingsley{' '}
+                Kingsley festus
                 <span className="text-orange-500 text-3xl block not-italic font-bold tracking-widest mt-2">
                   Osuya
                 </span>
@@ -66,7 +74,6 @@ export default function Profile() {
             </motion.div>
           </div>
 
-          {/* RIGHT COLUMN: The Story & Skills */}
           <div className="lg:col-span-7 space-y-20">
             {/* Bio Section */}
             <section>
@@ -88,8 +95,11 @@ export default function Profile() {
                 {[
                   { label: 'Frontend', items: 'React, Next.js, Tailwind' },
                   { label: 'Backend', items: 'Java, Node.js, Strapi' },
-                  { label: 'Hardware', items: 'Arduino, ESP32, PCB Design' },
-                  { label: 'Database', items: 'MySQL, PostgreSQL, SQLite' },
+                  { label: 'Hardware', items: 'Arduino, ESP32' },
+                  {
+                    label: 'Database',
+                    items: 'MySQL, PostgreSQL, SQLite, mongodb',
+                  },
                 ].map((skill, i) => (
                   <div
                     key={i}
@@ -104,7 +114,7 @@ export default function Profile() {
               </div>
             </section>
 
-            {/* Leadership Section (Course Rep) */}
+            {/* Leadership Section (Course Rep you think say na joke) */}
             <section className="bg-slate-900 p-12 rounded-[50px] text-white">
               <h2 className="text-orange-500 font-bold uppercase tracking-widest text-xs mb-6">
                 / Leadership

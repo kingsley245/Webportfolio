@@ -15,14 +15,14 @@ const config: Core.Config.Middlewares = [
             'data:',
             'blob:',
             'market-assets.strapi.io',
-            'res.cloudinary.com', // Cloudinary Domain
+            'res.cloudinary.com',
           ],
           'media-src': [
             "'self'",
             'data:',
             'blob:',
             'market-assets.strapi.io',
-            'res.cloudinary.com', // Cloudinary Domain
+            'res.cloudinary.com',
           ],
           upgradeInsecureRequests: null,
         },
