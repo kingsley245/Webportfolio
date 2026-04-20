@@ -59,7 +59,7 @@ export default function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <h1 className="text-8xl md:text-9xl font-black text-slate-900 tracking-tighter uppercase italic leading-[0.8] mb-12">
+              <h1 className="text-6xl md:text-9xl font-black text-slate-900 tracking-tighter uppercase italic leading-[0.8] mb-12">
                 Get in <br />
                 <span className="text-orange-500">Touch.</span>
               </h1>
@@ -79,7 +79,7 @@ export default function Contact() {
                     href="mailto:kingsley@kanthcode.com"
                     className="text-2xl md:text-3xl font-black text-slate-900 hover:text-orange-500 transition-colors italic tracking-tighter uppercase"
                   >
-                    kingsley@kanthcode.com
+                    kingsleyfestus24@gmail.com
                   </a>
                 </div>
 
@@ -209,11 +209,9 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={state.submitting}
-                className="w-full bg-slate-900 text-white font-black py-8 rounded-[35px] hover:bg-orange-500 disabled:bg-slate-200 transition-all uppercase italic tracking-tighter text-2xl shadow-xl shadow-slate-900/10"
+                className="w-full bg-slate-900 text-white font-black py-8 rounded-[35px]  disabled:bg-slate-200 transition-all uppercase italic tracking-tighter text-2xl shadow-xl shadow-slate-900/10  cursor-pointer"
               >
-                {state.submitting
-                  ? 'Transmitting...'
-                  : 'Initialize Connection —→'}
+                {state.submitting ? 'sending...' : 'send a message'}
               </button>
             </form>
           </motion.div>
