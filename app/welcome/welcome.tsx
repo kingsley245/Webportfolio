@@ -101,9 +101,12 @@ const HomePage = () => {
               transition={{ repeat: Infinity, duration: 4 }}
               className="absolute -left-12 top-24 z-20 hidden md:block"
             >
-              <div className="bg-linear-to-br from-fuchsia-500 to-purple-600 text-white px-6 py-3 rounded-2xl font-black shadow-2xl rotate-[-8deg] border-4 border-white tracking-widest text-sm">
+              <Link
+                to="/contact"
+                className="bg-linear-to-br from-fuchsia-500 to-purple-600 text-white px-6 py-3 rounded-2xl font-black shadow-2xl rotate-[-8deg] border-4 border-white tracking-widest text-sm"
+              >
                 AVAILABLE FOR HIRE
-              </div>
+              </Link>
             </motion.div>
 
             {/* Main Image Container */}
