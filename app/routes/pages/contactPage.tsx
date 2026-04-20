@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useForm, ValidationError } from '@formspree/react';
 
 // Accessing the ID from your .env file
-const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID;
+const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID || 'maqadywv';
 
 export default function Contact() {
   const [state, handleSubmit] = useForm(FORMSPREE_ID);
