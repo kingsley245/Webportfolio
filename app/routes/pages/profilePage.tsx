@@ -1,121 +1,88 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-
-const STRAPI_URL = import.meta.env.VITE_STRAPI_URL;
+import { client, urlFor } from '../src/sanity';
 
 export default function Profile() {
   const [profile, setProfile] = useState<any>(null);
+
   useEffect(() => {
-    async function fetchProfile() {
-      const res = await fetch(`${STRAPI_URL}/api/profiles?populate=*`);
-      const result = await res.json();
-      setProfile(result.data);
-    }
-    fetchProfile();
+    const query = `*[_type == "profile"][0]`;
+    client.fetch(query).then((data) => setProfile(data));
   }, []);
 
-  if (!profile)
-    return <div className="p-24 text-center font-mono">LOADING_PROFILE...</div>;
-
-  const data = profile[0];
-
-  const imgUrl = data.ProfileImage.formats.thumbnail.url;
+  if (!profile) return null;
 
   return (
     <main className="min-h-screen bg-white pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-          <div className="lg:col-span-5">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="sticky top-32"
-            >
-              <div className="relative mb-8">
-                <div className="absolute -inset-4 border-2 border-orange-500 rounded-[60px] opacity-20 rotate-3"></div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="lg:col-span-4"
+          >
+            <div className="aspect-square rounded-[60px] overflow-hidden bg-slate-100 border-[12px] border-white shadow-2xl mb-8">
+              {profile.avatar && (
                 <img
-                  src="https://res.cloudinary.com/dcpkscvwe/image/upload/v1776439941/small_Whats_App_Image_2026_01_20_at_18_24_11_901c0499cf.jpg"
-                  className="w-full aspect-4/5 object-cover rounded-[50px] shadow-2xl relative z-10 grayscale hover:grayscale-0 transition-all duration-700"
-                  alt="Kingsley Festus Osuya"
+                  src={urlFor(profile.avatar).url()}
+                  alt={profile.name}
+                  className="w-full h-full object-cover  hover:grayscale-0 transition-all duration-700"
                 />
-              </div>
+              )}
+            </div>
+            <h1 className="text-4xl font-black text-slate-900 uppercase italic tracking-tighter">
+              {profile.name}
+            </h1>
+            <p className="text-orange-500 font-bold uppercase tracking-widest text-xs mt-2">
+              {profile.role}
+            </p>
+            <p className="text-slate-400 font-medium text-sm mt-1">
+              Based in {profile.location}
+            </p>
+          </motion.div>
 
-              <h1 className="text-5xl font-black text-slate-900 uppercase italic tracking-tighter leading-none mb-4">
-                Kingsley festus
-                <span className="text-orange-500 text-3xl block not-italic font-bold tracking-widest mt-2">
-                  Osuya
-                </span>
-              </h1>
-
-              <div className="space-y-4">
-                <div className="flex items-center gap-3 text-slate-500">
-                  <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
-                  <p className="font-bold text-sm uppercase tracking-widest">
-                    {data.Role}
+          {/* Right Side: Bio & Skills */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="lg:col-span-8"
+          >
+            <section className="mb-20">
+              <h2 className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 mb-8">
+                About Me
+              </h2>
+              <div className="prose prose-2xl prose-slate font-medium text-slate-700 leading-tight">
+                {profile.bio?.map((block: any, i: number) => (
+                  <p key={i}>
+                    {block.children?.map((c: any) => c.text).join('')}
                   </p>
-                </div>
-                <p className="text-slate-400 font-medium">
-                  {data.Location} | NDU EEE '26
-                </p>
-              </div>
-            </motion.div>
-          </div>
-
-          <div className="lg:col-span-7 space-y-20">
-            {/* Bio Section */}
-            <section>
-              <h2 className="text-orange-500 font-bold uppercase tracking-widest text-xs mb-6">
-                / The Vision
-              </h2>
-              <p className="text-2xl text-slate-700 leading-relaxed font-medium">
-                {data.Bio ||
-                  'As an Electronics Engineering student at Niger Delta University and a full-stack developer, I bridge the gap between hardware and software.'}
-              </p>
-            </section>
-
-            {/* Technical Skills Grid */}
-            <section>
-              <h2 className="text-orange-500 font-bold uppercase tracking-widest text-xs mb-8">
-                / Technical Stack
-              </h2>
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { label: 'Frontend', items: 'React, Next.js, Tailwind' },
-                  { label: 'Backend', items: 'Java, Node.js, Strapi' },
-                  { label: 'Hardware', items: 'Arduino, ESP32' },
-                  {
-                    label: 'Database',
-                    items: 'MySQL, PostgreSQL, SQLite, mongodb',
-                  },
-                ].map((skill, i) => (
-                  <div
-                    key={i}
-                    className="p-6 bg-slate-50 rounded-[30px] border border-slate-100 hover:border-orange-200 transition-colors"
-                  >
-                    <h3 className="font-black text-slate-900 uppercase text-xs tracking-widest mb-2">
-                      {skill.label}
-                    </h3>
-                    <p className="text-slate-500 font-bold">{skill.items}</p>
-                  </div>
                 ))}
               </div>
             </section>
 
-            {/* Leadership Section (Course Rep you think say na joke) */}
-            <section className="bg-slate-900 p-12 rounded-[50px] text-white">
-              <h2 className="text-orange-500 font-bold uppercase tracking-widest text-xs mb-6">
-                / Leadership
-              </h2>
-              <h3 className="text-3xl font-black mb-4 uppercase italic tracking-tighter">
-                Departmental Course Representative
-              </h3>
-              <p className="text-slate-400 leading-relaxed">
-                Managing academic coordination and student relations for the EEE
-                department at NDU, ensuring seamless communication between
-                faculty and peers.
-              </p>
+            <section className="grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-slate-100 pt-16">
+              {profile.skills?.map((skillGroup: any, i: number) => (
+                <div key={i}>
+                  <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 mb-6">
+                    {skillGroup.category}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {skillGroup.items?.map((skill: string, j: number) => (
+                      <span
+                        key={j}
+                        className="text-xl font-black text-slate-900 uppercase italic tracking-tighter"
+                      >
+                        {skill}
+                        {j < skillGroup.items.length - 1 && (
+                          <span className="text-orange-500 mx-2">/</span>
+                        )}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </section>
-          </div>
+          </motion.div>
         </div>
       </div>
     </main>

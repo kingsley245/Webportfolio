@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { useForm, ValidationError } from '@formspree/react';
 
-// Accessing the ID from your .env file
 const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID || 'maqadywv';
 
 export default function Contact() {
@@ -53,7 +52,6 @@ export default function Contact() {
     <main className="min-h-screen bg-white pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
-          {/* LEFT COLUMN: Contact Details */}
           <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -110,7 +108,6 @@ export default function Contact() {
             </motion.div>
           </div>
 
-          {/* RIGHT COLUMN: The Form */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}

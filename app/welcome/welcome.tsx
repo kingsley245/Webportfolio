@@ -10,8 +10,8 @@ const HomePage = () => {
     <>
       <Navbar />
       <div className="relative min-h-screen pt-20 bg-white overflow-hidden">
-        {/* <div className="absolute top-[-10%] right-[-5%] w-125 h-125 bg-purple-50 rounded-full blur-[120px] opacity-60" />
-        <div className="absolute bottom-[10%] left-[-5%] w-100 h-100 bg-fuchsia-50 rounded-full blur-[100px] opacity-60" /> */}
+        <div className="absolute top-[-10%] right-[-5%] w-125 h-125 bg-purple-50 rounded-full blur-[120px] opacity-60" />
+        <div className="absolute bottom-[10%] left-[-5%] w-100 h-100 bg-fuchsia-50 rounded-full blur-[100px] opacity-60" />
 
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center py-12 md:py-24 relative z-10">
           {/* LEFT CONTENT */}

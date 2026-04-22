@@ -6,6 +6,6 @@ export default [
   route('/experience', 'routes/pages/ExperincePage.tsx'),
   route('/projects', 'routes/pages/ProjectPage.tsx'),
   route('/contact', 'routes/pages/contactPage.tsx'),
-  route('/projects/:id', 'routes/pages/ProjectDetails.tsx'),
+  route('/projects/:slug', 'routes/pages/ProjectDetails.tsx'),
   route('*', 'routes/components/notFound.tsx'),
 ] satisfies RouteConfig;
