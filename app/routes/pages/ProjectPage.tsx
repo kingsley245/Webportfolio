@@ -97,7 +97,7 @@ export default function Projects() {
                     to={`/projects/${project.slug}`}
                     className="text-[10px] font-black uppercase tracking-[0.3em] text-orange-500 border-b-2 border-orange-500 pb-1 hover:text-slate-900 hover:border-slate-900 transition-all"
                   >
-                    View Implementation
+                    View Project Details
                   </Link>
                 </div>
               </div>
