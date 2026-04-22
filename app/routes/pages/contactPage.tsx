@@ -29,12 +29,12 @@ export default function Contact() {
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
           </div>
-          <h2 className="text-5xl md:text-6xl font-black text-slate-900 uppercase italic tracking-tighter mb-6 leading-none">
+          {/* <h2 className="text-5xl md:text-6xl font-black text-slate-900 uppercase italic tracking-tighter mb-6 leading-none">
             Connection <br />{' '}
             <span className="text-orange-500">Initialized.</span>
-          </h2>
+          </h2> */}
           <p className="text-slate-500 font-bold text-lg mb-10">
-            Data transmitted successfully. Kingsley will respond to your inquiry
+            Data sent successfully. Kingsley will respond to your inquiry
             shortly.
           </p>
           <button
